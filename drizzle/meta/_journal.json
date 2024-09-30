@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1725946598786,
+      "tag": "0000_medical_lorna_dane",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1726482051793,
+      "tag": "0001_same_patriot",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1726502448883,
+      "tag": "0002_burly_killer_shrike",
+      "breakpoints": true
+    }
+  ]
+}
