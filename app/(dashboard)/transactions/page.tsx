@@ -1,34 +1,16 @@
 "use client";
 
-import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
 import { useDeleteAllTransactions } from "@/features/transactions/api/use-delete-all";
 import { useGetTransactions } from "@/features/transactions/api/use-get-transactions";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DataTable } from "@/components/data-table";
-import { Loader2, Plus } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 import { columns } from "./columns";
-import { useState } from "react";
-import { UploadButton } from "./upload-button";
-
-enum VARIANTS {
-  LIST = "LIST",
-  IMPORT = "IMPORT",
-}
-
-const INITIAL_IMPORT_RESULTS = {
-  data: [],
-  errors: [],
-  meta: {},
-};
 
 const TransactionPage = () => {
-  const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST);
-
-  const newTransaction = useNewTransaction();
   const deleteTransactions = useDeleteAllTransactions();
   const transactionsQuery = useGetTransactions();
   const transactions = transactionsQuery.data || [];
@@ -53,9 +35,6 @@ const TransactionPage = () => {
     );
   }
 
-  if (variant === VARIANTS.IMPORT) {
-    return <>This is screen for import</>;
-  }
   return (
     <div className="w-full pb-10 -mt-20">
       <Card className=" border-none drop-shadow-sm">
@@ -63,12 +42,6 @@ const TransactionPage = () => {
           <CardTitle className=" text-xl line-clamp-1">
             Transactions History
           </CardTitle>
-          <div className="flex items-center gap-x-2">
-            <Button onClick={newTransaction.onOpen} size="sm">
-              <Plus className="size-4 mr-2" /> Add New
-            </Button>
-            <UploadButton onUpload={() => {}} />
-          </div>
         </CardHeader>
         <CardContent>
           <DataTable

@@ -4,7 +4,6 @@ import qs from "query-string";
 import { format, subDays } from "date-fns";
 import { DateRange } from "react-day-picker";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useGetSummary } from "@/features/summary/api/use-get-summary";
 
 import { ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
@@ -15,7 +14,7 @@ import {
   PopoverContent,
   PopoverClose,
 } from "./ui/popover";
-import { cn, formatDateRange } from "@/lib/utils";
+import { formatDateRange } from "@/lib/utils";
 import { useAccount } from "@/hooks/useAccount";
 import { useState } from "react";
 
@@ -23,7 +22,7 @@ const DateFilter = () => {
   const router = useRouter();
   const pathName = usePathname();
   const params = useSearchParams();
-  const { accountId: accountIdState, onChange: onAccountChange } = useAccount();
+  const { accountId: accountIdState } = useAccount();
   const accountId = accountIdState || params.get("accountId");
   const from = params.get("from") || "";
   const to = params.get("to") || "";
