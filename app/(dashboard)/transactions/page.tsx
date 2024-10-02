@@ -1,16 +1,19 @@
 "use client";
 
+import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
 import { useDeleteAllTransactions } from "@/features/transactions/api/use-delete-all";
 import { useGetTransactions } from "@/features/transactions/api/use-get-transactions";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DataTable } from "@/components/data-table";
-import { Loader2 } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 
 import { columns } from "./columns";
 
 const TransactionPage = () => {
+  const newTransaction = useNewTransaction();
   const deleteTransactions = useDeleteAllTransactions();
   const transactionsQuery = useGetTransactions();
   const transactions = transactionsQuery.data || [];
@@ -42,6 +45,11 @@ const TransactionPage = () => {
           <CardTitle className=" text-xl line-clamp-1">
             Transactions History
           </CardTitle>
+          <div className="flex items-center gap-x-2">
+            <Button onClick={newTransaction.onOpen} size="sm">
+              <Plus className="size-4 mr-2" /> Add New
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
           <DataTable
